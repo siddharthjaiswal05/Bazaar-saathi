@@ -5,6 +5,7 @@
 
 from __future__ import annotations
 
+import os
 from concurrent.futures import ThreadPoolExecutor
 
 import pandas as pd
@@ -46,6 +47,12 @@ SAMPLE_PORTFOLIO = [
 
 @st.cache_resource
 def get_client():
+    # On Streamlit Cloud the key comes from Settings -> Secrets; locally from .env
+    try:
+        if "SARVAM_API_KEY" in st.secrets:
+            os.environ.setdefault("SARVAM_API_KEY", str(st.secrets["SARVAM_API_KEY"]).strip())
+    except Exception:  # no secrets.toml when running locally
+        pass
     return sarvam_ai.make_client()
 
 
