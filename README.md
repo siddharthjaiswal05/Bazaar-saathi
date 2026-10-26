@@ -4,6 +4,15 @@ A voice-first AI market companion for first-time Indian investors. It teaches th
 
 Built on [Sarvam AI](https://docs.sarvam.ai).
 
+**Live demo: [bazaar-saathi-49asgflkj66o5nfzksejff.streamlit.app](https://bazaar-saathi-49asgflkj66o5nfzksejff.streamlit.app)**
+
+To try it, pick a language in the sidebar, then:
+1. **Bacho:** run one of the sample WhatsApp tips through the checker.
+2. **Poocho:** ask a question by voice, e.g. "Infosys ka chart kaisa hai?"
+3. **Seekho:** open the RSI lesson and take its quiz.
+
+If the app has been idle, Streamlit Cloud may take about 30 seconds to wake it up.
+
 ## The problem
 
 Millions of new investors in India's smaller cities learn about the market from WhatsApp forwards and finfluencers. They often can't read charts, and much of the trustworthy information is in English. Bazaar Saathi gives them one place to **learn**, **analyse**, **check tips** and **ask questions**, all in their own language and by voice.
@@ -56,14 +65,17 @@ To check your key with a single API call, run `python sarvam_hello.py`.
 
 Market data comes from Yahoo Finance through `yfinance`, which needs no key.
 
-## Deploy (Streamlit Community Cloud)
+## Deploy your own copy (Streamlit Community Cloud)
 
-1. Push this repo to GitHub. `.env` is git-ignored, so your key stays out of the repository.
-2. On [share.streamlit.io](https://share.streamlit.io), create an app from the repo with `app.py` as the main file.
-3. Under **Settings → Secrets**, add:
+The live demo above runs on Streamlit Community Cloud. To deploy your own:
+
+1. Fork this repo. `.env` is git-ignored, so keys never reach GitHub.
+2. On [share.streamlit.io](https://share.streamlit.io), click **Create app** and choose your fork, branch `main`, main file `app.py`.
+3. In **App settings → Secrets**, add your key from the [Sarvam dashboard](https://dashboard.sarvam.ai), then click **Save changes** and reboot the app:
    ```toml
    SARVAM_API_KEY = "your-key"
    ```
+   The app reads the key from Streamlit secrets, or from `.env` when running locally.
 
 ## Project layout
 
